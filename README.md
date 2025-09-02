@@ -60,43 +60,42 @@ lib/
 
 ```mermaid
 graph TD
-    subgraph "UI (Widgets)"
-        A[StopwatchScreen]
-        B[TimeDisplay]
-        C[ControlButtons]
+    subgraph "Interfaz de Usuario (Widgets)"
+        A[PantallaCronometro]
+        B[VistaTiempo]
+        C[BotonesControl]
     end
 
-    subgraph "State Management (Riverpod)"
-        D[stopwatchProvider]
-        E[formattedTimeProvider]
-        F[stopwatchStatusProvider]
+    subgraph "Gestión de Estado (Riverpod)"
+        D[providerCronometro]
+        E[providerTiempoFormateado]
+        F[providerEstadoCronometro]
     end
 
-    subgraph "Business Logic"
-        G[StopwatchNotifier]
-        H[StopwatchState]
+    subgraph "Lógica de Negocio"
+        G[NotificadorCronometro]
+        H[EstadoCronometro]
     end
 
-    subgraph "Services"
-        I[TimerService]
+    subgraph "Servicios"
+        I[ServicioTemporizador]
     end
 
-    A --> B
-    A --> C
+    A --> B & C
 
-    B -- watches --> E
-    B -- watches --> F
+    B -- observa --> E
+    B -- observa --> F
 
-    C -- calls methods of --> G
+    C -- invoca métodos de --> G
 
-    D -- provides --> G
-    E -- derives from --> D
-    F -- derives from --> D
+    D -- provee --> G
+    E -- deriva de --> D
+    F -- deriva de --> D
 
-    G -- manages state of --> H
-    G -- uses --> I
+    G -- gestiona el estado de --> H
+    G -- utiliza --> I
 
-    I -- provides timer ticks --> G
+    I -- provee los ticks del timer a --> G
 ```
 
 ## 🚀 Instalación y Configuración
